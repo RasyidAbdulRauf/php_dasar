@@ -18,7 +18,7 @@ services:
     volumes:
       - database:/var/lib/mysql
     environment:
-      MYSQL_USER: user
+      MYSQL_USER: root
       MYSQL_ROOT_PASSWORD: password
       MYSQL_DATABASE: docker_php
       MYSQL_PASSWORD: password
