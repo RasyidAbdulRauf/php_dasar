@@ -4,7 +4,7 @@
 include "service/database.php";
 session_start();
 
-
+// pesan untuk login
 $login_message = "";
 
 if (isset($_SESSION["is_login"])) {
@@ -15,9 +15,11 @@ if (isset($_POST['login'])) {
     $username = $_POST['username'];
     $password = $_POST['password'];
 
+    $hash_password = hash("sha256", $password); //encryp password
+
     // mengambil data users resgiter
     $sql = "SELECT * FROM users WHERE 
-    username = '$username' AND password = '$password'";
+    username = '$username' AND password = '$hash_password'";
 
     $result = $db->query($sql);
 
@@ -31,8 +33,8 @@ if (isset($_POST['login'])) {
     }else {
         $login_message = "Akun tidak ditemukan";
     }
-
-}
+    $db->close();
+}   
 ?>
 
 <!DOCTYPE html>
